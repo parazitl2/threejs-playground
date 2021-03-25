@@ -8,11 +8,12 @@ var camera = new THREE.PerspectiveCamera(
   1000
 );
 var renderer = new THREE.WebGLRenderer();
+var loader = new GLTFLoader();
+var light = new THREE.HemisphereLight(0xFFFFFF, 0x000000, 2);
+var obj;
+
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-
-var loader = new GLTFLoader();
-var obj;
 
 loader.load("./3d-model/scene.gltf", function(gltf) {
   obj = gltf.scene;
@@ -20,7 +21,6 @@ loader.load("./3d-model/scene.gltf", function(gltf) {
 });
 
 scene.background = new THREE.Color(0xAAAAAA);
-var light = new THREE.HemisphereLight(0xFFFFFF, 0x000000, 2);
 scene.add(light);
 camera.position.set(0, 0, 15);
 
